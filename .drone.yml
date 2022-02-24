@@ -8,3 +8,20 @@ steps:
   commands:
   - ls -la
   - echo "This is a test"
+
+- name: step to fail
+  image: bash:alpine3.14
+  commands:
+  - unknown_command
+
+- name: slack
+  image: s390x-slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: general
+    link_names: true
+    template: >
+      {{#failure build.status}}
+        build {{build.number}} failed. It took {{since build.started}} {{build.link}}
+      {{/failure}}
