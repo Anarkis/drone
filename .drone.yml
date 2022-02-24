@@ -21,13 +21,15 @@ steps:
   - unknown_command
 
 - name: slack
-  image: s390x-slack
+  image: s390x-slack:latest
+  pull: never
   settings:
     webhook:
       from_secret: slack_webhook
     channel: general
     link_names: true
     template: >
-      {{#failure build.status}}
         build {{build.number}} failed. It took {{since build.started}} {{build.link}}
-      {{/failure}}
+  when:
+    status:
+      - failure
