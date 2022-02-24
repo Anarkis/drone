@@ -2,6 +2,12 @@ kind: pipeline
 type: docker
 name: docker-test
 
+platform:
+  os: linux
+  arch: amd64
+node:
+  arch: s390x
+
 steps:
 - name: build
   image: bash:alpine3.14
