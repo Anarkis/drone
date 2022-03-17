@@ -20,6 +20,12 @@ steps:
   commands:
   - unknown_command
 
+- name: test2
+  image: bash:alpine3.14
+  commands:
+  - ls -la
+  - echo "This is a test"
+
 - name: slack
   image: s390x-slack:latest
   pull: never
