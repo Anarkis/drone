@@ -27,8 +27,11 @@ steps:
   - echo "This is a test"
 
 - name: slack
-  image: s390x-slack:latest
-  pull: never
+  image: luistt/drone-images:v0.0.1-slack-s390x
+  pull: if-not-exists
+  volumes:
+    - name: certs
+      path: /data
   settings:
     webhook:
       from_secret: slack_webhook
@@ -39,3 +42,11 @@ steps:
   when:
     status:
       - failure
+
+volumes:
+- name: docker
+  host:
+    path: /var/run/docker.sock
+- name: certs
+  host:
+    path: /var/lib/drone
