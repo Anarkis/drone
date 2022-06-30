@@ -8,12 +8,31 @@ platform:
 node:
   arch: s390x
 
+environment:
+  REGISTRY: luistt
+
 steps:
 - name: build
   image: bash:alpine3.14
   commands:
   - ls -la
   - echo "This is a test"
+
+- name: publish
+  image: luistt/drone-images:v0.0.1-docker-s390x
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+  commands:
+  - echo $REGISTRY
+  settings:
+    dockerfile: test/Dockerfile
+    tag: test
+    repo: ${REGISTRY}/registry-test
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
 
 - name: step to fail
   image: bash:alpine3.14
