@@ -12,14 +12,18 @@ platform:
   os: linux
   arch: amd64
 
-node:
-  arch: s390x
+#node:
+  #arch: s390x
 
 steps:
 - name: publish
-  image: luistt/drone-images:v0.0.7-docker-s390x #plugins/docker
-  #environment:
-    #resgistry: $REGISTRY
+  image: luistt/drone-images:enterprise-v0.0.1 #plugins/docker
+  environment:
+    REGISTRY: public.ecr.aws/b3e3i8k2
+    AWS_ACCESS_KEY_ID:
+      from_secret: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: AWS_SECRET_ACCESS_KEY 
   volumes:
   - name: docker
     path: /var/run/docker.sock
@@ -29,10 +33,10 @@ steps:
     registry: public.ecr.aws/b3e3i8k2 
     repo: public.ecr.aws/b3e3i8k2/test
     region: us-east-1
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
+    #username:
+      #from_secret: docker_username
+    #password:
+      #from_secret: docker_password
 
 volumes:
 - name: docker
