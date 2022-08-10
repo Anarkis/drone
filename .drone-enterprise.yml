@@ -17,7 +17,7 @@ platform:
 
 steps:
 - name: publish
-  image: luistt/drone-images:enterprise-v0.0.1 #plugins/docker
+  image: luistt/drone-images:enterprise-v0.0.1a #plugins/docker
   environment:
     REGISTRY: public.ecr.aws/b3e3i8k2
     AWS_ACCESS_KEY_ID:
