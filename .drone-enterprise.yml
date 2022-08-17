@@ -2,15 +2,12 @@ kind: pipeline
 type: docker
 name: docker-test
 
-environment:
-  registry: public.ecr.aws/b3e3i8k2
-
-#node:
-  #rancher_enterprise: true
+node:
+  rancher_enterprise: true
 
 platform:
   os: linux
-  arch: amd64
+  arch: arm64
 
 #node:
   #arch: s390x
