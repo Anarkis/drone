@@ -14,7 +14,7 @@ platform:
 
 steps:
 - name: publish
-  image: luistt/drone-images:enterprise-v0.0.2 #plugins/docker
+  image: luistt/drone-prime-publish:v0.0.2 #plugins/docker
   environment:
     REGISTRY:
       from_secret: REGISTRY
